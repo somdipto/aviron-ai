@@ -35,12 +35,17 @@ const InteractiveDemo = () => {
   };
 
   return (
-    <section id="demo" className="py-20 relative overflow-hidden">
+    <section id="demo" className="py-20 relative overflow-hidden cosmic-dots">
+      {/* Floating Elements */}
+      <div className="absolute left-1/4 top-1/4 w-3 h-3 rounded-full bg-purple-500/30 animate-float" style={{ animationDelay: '0.5s' }}></div>
+      <div className="absolute left-3/4 top-1/3 w-2 h-2 rounded-full bg-blue-500/30 animate-float" style={{ animationDelay: '1.2s' }}></div>
+      <div className="absolute left-1/3 bottom-1/4 w-4 h-4 rounded-full bg-purple-500/20 animate-float" style={{ animationDelay: '1.8s' }}></div>
+      
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-blue-950/10"></div>
-        <div className="absolute bottom-40 left-20 w-96 h-96 bg-blue-600/10 rounded-full filter blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-purple-950/10"></div>
+        <div className="absolute bottom-40 left-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -67,7 +72,7 @@ const InteractiveDemo = () => {
                   <SelectTrigger id="aircraft-type">
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-card border border-border">
                     <SelectItem value="commercial">Commercial Passenger</SelectItem>
                     <SelectItem value="cargo">Cargo</SelectItem>
                     <SelectItem value="private">Private Jet</SelectItem>
@@ -79,13 +84,13 @@ const InteractiveDemo = () => {
               
               <div className="space-y-2">
                 <Label htmlFor="passengers">Passenger Capacity</Label>
-                <Input id="passengers" type="number" defaultValue="150" />
+                <Input id="passengers" type="number" defaultValue="150" className="bg-secondary/50" />
               </div>
               
               <div className="space-y-2">
                 <Label>Range (km)</Label>
                 <div className="pt-4">
-                  <Slider defaultValue={[5000]} max={20000} step={100} />
+                  <Slider defaultValue={[5000]} max={20000} step={100} className="[&>span]:bg-purple-500" />
                   <div className="flex justify-between mt-2">
                     <span className="text-xs text-gray-400">0 km</span>
                     <span className="text-xs text-gray-400">5,000 km</span>
@@ -100,7 +105,7 @@ const InteractiveDemo = () => {
                   <SelectTrigger id="priority">
                     <SelectValue placeholder="Select Priority" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-card border border-border">
                     <SelectItem value="efficiency">Fuel Efficiency</SelectItem>
                     <SelectItem value="speed">Maximum Speed</SelectItem>
                     <SelectItem value="capacity">Maximum Capacity</SelectItem>
@@ -112,7 +117,7 @@ const InteractiveDemo = () => {
               
               <Button 
                 onClick={handleGenerate} 
-                className="w-full"
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
                 disabled={loading}
               >
                 {loading ? (
@@ -137,9 +142,9 @@ const InteractiveDemo = () => {
             <CardContent className="h-[400px] flex items-center justify-center relative">
               {generated ? (
                 <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-b from-blue-700/10 to-blue-900/30 flex items-center justify-center">
-                    <div className="glow p-4 rounded-2xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-48 w-48 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="absolute inset-0 bg-gradient-to-b from-purple-700/10 to-blue-900/20 flex items-center justify-center">
+                    <div className="space-glow p-4 rounded-2xl">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-48 w-48 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
                     </div>
@@ -151,7 +156,7 @@ const InteractiveDemo = () => {
                       <span>92%</span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-1.5 mb-3">
-                      <div className="bg-blue-500 h-1.5 rounded-full w-[92%]"></div>
+                      <div className="bg-purple-500 h-1.5 rounded-full w-[92%]"></div>
                     </div>
                     
                     <div className="flex justify-between text-sm mb-1">
@@ -159,7 +164,7 @@ const InteractiveDemo = () => {
                       <span>0.021</span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-1.5 mb-3">
-                      <div className="bg-blue-500 h-1.5 rounded-full w-[85%]"></div>
+                      <div className="bg-purple-500 h-1.5 rounded-full w-[85%]"></div>
                     </div>
                     
                     <div className="flex justify-between text-sm mb-1">
@@ -167,7 +172,7 @@ const InteractiveDemo = () => {
                       <span>88%</span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-1.5">
-                      <div className="bg-blue-500 h-1.5 rounded-full w-[88%]"></div>
+                      <div className="bg-purple-500 h-1.5 rounded-full w-[88%]"></div>
                     </div>
                   </div>
                 </div>

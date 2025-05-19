@@ -55,10 +55,10 @@ const Pricing = () => {
   const [annual, setAnnual] = useState(true);
 
   return (
-    <section id="pricing" className="py-20 relative">
+    <section id="pricing" className="py-20 relative cosmic-dots">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute bottom-0 left-0 w-full h-80 bg-blue-900/10 transform skew-y-3"></div>
+        <div className="absolute bottom-0 left-0 w-full h-80 bg-purple-900/5 transform skew-y-3"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -75,7 +75,7 @@ const Pricing = () => {
             <button
               onClick={() => setAnnual(!annual)}
               className={`relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                annual ? "bg-blue-500" : "bg-gray-600"
+                annual ? "bg-gradient-to-r from-purple-500 to-blue-500" : "bg-gray-600"
               }`}
             >
               <span
@@ -85,7 +85,7 @@ const Pricing = () => {
               />
             </button>
             <span className={`ml-3 ${annual ? "text-white" : "text-gray-400"}`}>
-              Yearly <span className="text-blue-400">(Save 20%)</span>
+              Yearly <span className="text-purple-400">(Save 20%)</span>
             </span>
           </div>
         </div>
@@ -95,11 +95,11 @@ const Pricing = () => {
             <div
               key={index}
               className={`glass-card relative rounded-xl overflow-hidden transition-transform hover:translate-y-[-5px] ${
-                tier.popular ? "border-blue-500 glow" : ""
+                tier.popular ? "border-purple-500/50 space-glow" : ""
               }`}
             >
               {tier.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-blue-500 text-white text-xs font-bold py-1 text-center">
+                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-xs font-bold py-1 text-center">
                   MOST POPULAR
                 </div>
               )}
@@ -116,15 +116,15 @@ const Pricing = () => {
                 <ul className="mb-8 space-y-3">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
-                      <CheckIcon className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                      <CheckIcon className="h-5 w-5 text-purple-500 mr-2 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
                 <Button 
-                  variant={tier.popular ? "default" : "outline"} 
-                  className="w-full"
+                  variant={tier.popular ? "default" : "outline"}
+                  className={tier.popular ? "w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600" : "w-full border-purple-500/30 hover:bg-purple-500/10"}
                 >
                   {tier.cta}
                 </Button>

@@ -96,6 +96,14 @@ export default {
 				'pulse-glow': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.6' }
+				},
+				'rotate-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'orbit': {
+					'0%': { transform: 'rotate(0deg) translateX(100px) rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg) translateX(100px) rotate(-360deg)' }
 				}
 			},
 			animation: {
@@ -104,11 +112,14 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out forwards',
 				'fade-out': 'fade-out 0.3s ease-out',
 				'float': 'float 5s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'rotate-slow': 'rotate-slow 20s linear infinite',
+				'orbit': 'orbit 12s linear infinite',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'blue-gradient': 'linear-gradient(to right, #0f172a, #1e3a8a)',
+				'purple-gradient': 'linear-gradient(135deg, #4B0082, #9370DB)',
 				'hero-pattern': "url('/pattern.svg')"
 			},
 		}

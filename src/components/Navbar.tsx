@@ -21,10 +21,10 @@ const Navbar = () => {
     }`}>
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center">
+          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center animate-pulse-glow">
             <span className="font-bold text-white">A</span>
           </div>
-          <span className="text-xl font-bold">AeroAI</span>
+          <span className="text-xl font-bold">Aviron AI</span>
         </div>
         
         <div className="hidden md:flex items-center space-x-8">
@@ -35,10 +35,10 @@ const Navbar = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" className="hidden md:inline-flex">
+          <Button variant="outline" size="sm" className="hidden md:inline-flex border-purple-500/30 hover:bg-purple-500/10">
             Log In
           </Button>
-          <Button size="sm">
+          <Button size="sm" className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
             Get Started
           </Button>
         </div>

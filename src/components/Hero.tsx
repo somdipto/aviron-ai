@@ -10,12 +10,31 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden cosmic-dots">
+      {/* Orbiting Elements */}
+      {[...Array(6)].map((_, i) => (
+        <div 
+          key={i}
+          className="orbit-element"
+          style={{ 
+            '--delay': i * 2,
+            transform: `rotate(${i * 60}deg) translateX(150px) rotate(-${i * 60}deg)`
+          } as React.CSSProperties}
+        />
+      ))}
+      
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-blue-950/50 to-background"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/20 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-purple-900/20 to-background"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl"></div>
         <div className="absolute top-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"></div>
+      </div>
+      
+      {/* Rotating Element */}
+      <div className="absolute z-10 opacity-20">
+        <div className="w-[400px] h-[400px] border border-purple-500/30 rounded-full animate-rotate-slow"></div>
+        <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] border border-blue-500/30 rounded-full -translate-x-1/2 -translate-y-1/2 animate-rotate-slow" style={{ animationDirection: 'reverse' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-[200px] h-[200px] border border-purple-500/30 rounded-full -translate-x-1/2 -translate-y-1/2 animate-rotate-slow"></div>
       </div>
       
       {/* Content */}
@@ -26,8 +45,8 @@ const Hero = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="inline-block mb-4 px-3 py-1 bg-blue-900/30 backdrop-blur-sm rounded-full border border-blue-800/50">
-              <span className="text-xs font-medium text-blue-300">Revolutionizing Aircraft Design</span>
+            <div className="inline-block mb-4 px-3 py-1 bg-purple-900/30 backdrop-blur-sm rounded-full border border-purple-500/20">
+              <span className="text-xs font-medium text-purple-300">Revolutionizing Aircraft Design</span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -39,10 +58,10 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-              <Button size="lg" className="glow">
+              <Button size="lg" className="space-glow bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
                 Start Designing Now
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="border-purple-500/30 hover:bg-purple-500/10">
                 Watch Demo
               </Button>
             </div>
@@ -56,12 +75,12 @@ const Hero = () => {
           >
             <div className="relative h-[400px] w-full max-w-4xl mx-auto glass-card overflow-hidden animate-float">
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-blue-300 text-xl">3D Aircraft Visualization</span>
+                <span className="text-purple-300 text-xl">3D Aircraft Visualization</span>
               </div>
               {/* This is a placeholder for a 3D aircraft model or animation */}
               <div className="absolute inset-0 opacity-50">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-blue-500/50 blur-sm animate-pulse-glow"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20"></div>
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-purple-500/50 blur-sm animate-pulse-glow"></div>
               </div>
             </div>
           </div>
