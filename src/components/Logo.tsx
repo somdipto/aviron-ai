@@ -6,28 +6,27 @@ const Logo = ({ className = "" }: { className?: string }) => {
     <svg 
       width="32" 
       height="32" 
-      viewBox="0 0 32 32" 
+      viewBox="0 0 200 200" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
+      {/* Main A shape */}
       <path 
-        d="M16 2L30 28H2L16 2Z" 
-        fill="black" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-        transform="rotate(12 16 16)"
+        d="M100 10L10 190H190L100 10Z" 
+        fill="currentColor" 
       />
+      {/* Inner triangle */}
       <path 
-        d="M16 28L8 14L24 14L16 28Z" 
-        fill="black" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-        transform="rotate(12 16 16)"
+        d="M100 120L80 160H120L100 120Z" 
+        fill="#fff" 
+      />
+      {/* Circle element */}
+      <circle 
+        cx="60" 
+        cy="110" 
+        r="25" 
+        fill="#fff" 
       />
     </svg>
   );
