@@ -1,43 +1,61 @@
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    content: "Aviron AI has revolutionized our aircraft development process. We've cut design time by 70% while improving performance metrics across the board.",
+    author: "Sarah Chen",
+    title: "Chief Engineering Officer at AeroDynamics Ltd",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+  },
+  {
+    content: "As an academic institution focused on aerospace innovation, our partnership with Aviron AI has provided our students with cutting-edge tools that bridge theoretical knowledge and practical application.",
+    author: "Dr. Ranjit Kumar",
+    title: "Director, Department of Aerospace Engineering, MIT Manipal",
+    avatar: "https://mit.manipal.edu/content/dam/manipal/mu/mit/images/banners/deanmain1.png"
+  },
+  {
+    content: "The AI-powered optimization features have given us a competitive edge in the market. Our latest prototype achieved fuel efficiency improvements that exceeded our expectations.",
+    author: "Michael Torres",
+    title: "Head of Innovation at Skyways Tech",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+  }
+];
 
 const UpdatedTestimonial = () => {
-  const testimonials = [
-    {
-      quote: "Aviron AI has dramatically reduced our aircraft design cycle from months to weeks. The AI-generated designs consistently outperform our traditional approaches in efficiency and innovation.",
-      author: "Dr. Samantha Chen",
-      role: "Chief Aeronautical Engineer, AeroTech Solutions",
-      image: "https://i.pravatar.cc/150?img=32",
-    },
-    {
-      quote: "Our partnership with Aviron AI has been instrumental in our research on next-generation aircraft design. Their platform provides unparalleled insights and optimization capabilities for our students and faculty.",
-      author: "Prof. Rajesh Kumar",
-      role: "Department of Aerospace Engineering, MIT Manipal",
-      image: "https://i.pravatar.cc/150?img=59",
-      logo: "/mit-manipal-logo.png",
-      highlight: true,
-    },
-    {
-      quote: "The intuitive interface combined with powerful AI capabilities makes Aviron a game-changer for small and medium aircraft manufacturers like us. We can now compete with the industry giants.",
-      author: "Michael Rodriguez",
-      role: "CEO, SkyWorks Aviation",
-      image: "https://i.pravatar.cc/150?img=68",
-    },
-  ];
-
+  const [activeIndex, setActiveIndex] = useState(1); // Start with MIT Manipal testimonial
+  const [autoplay, setAutoplay] = useState(true);
+  
+  const prevTestimonial = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setAutoplay(false);
+  };
+  
+  const nextTestimonial = () => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setAutoplay(false);
+  };
+  
+  useEffect(() => {
+    if (!autoplay) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, [autoplay]);
+  
   return (
-    <div className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
+    <section className="py-20 relative overflow-hidden">
+      {/* Background glow effects */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-purple-950/10"></div>
-        <div className="absolute bottom-40 left-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-tr from-blue-900/5 via-transparent to-transparent"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -46,53 +64,76 @@ const UpdatedTestimonial = () => {
             Trusted by <span className="text-gradient">Industry Leaders</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            See why top aerospace companies, research institutions, and manufacturers choose our AI-powered design platform.
+            See what aerospace professionals are saying about our AI-powered aircraft design platform
           </p>
         </div>
         
-        <Carousel className="w-full max-w-6xl mx-auto">
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="sm:basis-full md:basis-1/2 lg:basis-1/3 pl-4">
-                <div className={`h-full ${testimonial.highlight ? 'glass-card border-purple-500/30' : 'glass-card border-0'} rounded-xl p-6 flex flex-col justify-between shadow-lg hover:shadow-purple-500/10 transition-all duration-300`}>
-                  <div>
-                    <div className="mb-4">
-                      {Array(5).fill(0).map((_, i) => (
-                        <svg key={i} className="inline-block w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
+        {/* Testimonial slider */}
+        <div className="max-w-4xl mx-auto">
+          <Card className="glass-card border-0 shadow-2xl">
+            <CardContent className="p-8 md:p-12">
+              <div className="flex justify-center mb-8">
+                <Quote className="h-12 w-12 text-purple-500/50" />
+              </div>
+              
+              <div className="relative min-h-[200px]">
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className={`transition-all duration-500 absolute inset-0 transform ${
+                      activeIndex === index 
+                        ? "opacity-100 scale-100" 
+                        : "opacity-0 scale-95 pointer-events-none"
+                    }`}
+                  >
+                    <p className="text-center text-lg md:text-xl mb-8">"{testimonial.content}"</p>
                     
-                    <p className="text-gray-300 italic mb-6">"{testimonial.quote}"</p>
+                    <div className="flex flex-col items-center">
+                      <Avatar className="h-16 w-16 mb-3 border-2 border-purple-500/50">
+                        <AvatarImage src={testimonial.avatar} />
+                        <AvatarFallback>
+                          {testimonial.author.split(" ").map(name => name[0]).join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <h4 className="font-semibold">{testimonial.author}</h4>
+                      <p className="text-sm text-gray-400">{testimonial.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex justify-center mt-12">
+                <div className="flex items-center gap-4">
+                  <Button onClick={prevTestimonial} variant="outline" size="icon" className="rounded-full border-purple-500/30 hover:bg-purple-500/10">
+                    <ArrowLeft className="h-4 w-4" />
+                  </Button>
+                  
+                  <div className="flex gap-1.5">
+                    {testimonials.map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => {
+                          setActiveIndex(index);
+                          setAutoplay(false);
+                        }}
+                        className={`h-2 rounded-full transition-all ${
+                          activeIndex === index ? "w-8 bg-purple-500" : "w-2 bg-gray-600"
+                        }`}
+                        aria-label={`Go to testimonial ${index + 1}`}
+                      />
+                    ))}
                   </div>
                   
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 mr-3">
-                      <img className="h-10 w-10 rounded-full" src={testimonial.image} alt={testimonial.author} />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-white">{testimonial.author}</h4>
-                      <p className="text-sm text-gray-400">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  
-                  {testimonial.logo && (
-                    <div className="mt-4 pt-4 border-t border-purple-500/20">
-                      <div className="flex justify-center">
-                        <img src={testimonial.logo} alt="Partner logo" className="h-10 object-contain opacity-70" />
-                      </div>
-                    </div>
-                  )}
+                  <Button onClick={nextTestimonial} variant="outline" size="icon" className="rounded-full border-purple-500/30 hover:bg-purple-500/10">
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

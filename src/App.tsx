@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import Technology from "./pages/Technology";
 import Contact from "./pages/Contact";
 import PageTemplate from "./components/PageTemplate";
+import AuthModal from "./components/AuthModal";
 
 const queryClient = new QueryClient();
 

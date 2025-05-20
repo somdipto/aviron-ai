@@ -13,11 +13,21 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden cosmic-dots">
       <Navbar />
       <main>
-        <Hero />
-        <Features />
-        <InteractiveDemo />
-        <UpdatedTestimonial />
-        <Pricing />
+        <section id="hero">
+          <Hero />
+        </section>
+        <section id="features">
+          <Features />
+        </section>
+        <section id="demo">
+          <InteractiveDemo />
+        </section>
+        <section id="testimonials">
+          <UpdatedTestimonial />
+        </section>
+        <section id="pricing">
+          <Pricing />
+        </section>
         <Cta />
       </main>
       <Footer />
