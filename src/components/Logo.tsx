@@ -11,23 +11,32 @@ const Logo = ({ className = "" }: { className?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
+      {/* Main triangle shape for the 'A' */}
       <path 
-        d="M16 2L30 28H2L16 2Z" 
+        d="M16 5L28 26H4L16 5Z" 
         fill="black" 
         stroke="currentColor" 
-        strokeWidth="2" 
+        strokeWidth="1.5" 
         strokeLinecap="round" 
         strokeLinejoin="round"
-        transform="rotate(12 16 16)"
       />
+      
+      {/* The crossbar of the 'A' */}
       <path 
-        d="M16 28L8 14L24 14L16 28Z" 
-        fill="black" 
+        d="M10 20H22" 
         stroke="currentColor" 
-        strokeWidth="2" 
+        strokeWidth="1.5" 
         strokeLinecap="round" 
-        strokeLinejoin="round"
-        transform="rotate(12 16 16)"
+      />
+      
+      {/* Circle around the logo for aerospace feel */}
+      <circle 
+        cx="16" 
+        cy="16" 
+        r="14" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        fill="none" 
       />
     </svg>
   );
