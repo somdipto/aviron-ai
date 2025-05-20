@@ -20,33 +20,43 @@ import {
 import { 
   Slider 
 } from "@/components/ui/slider";
+import { Textarea } from "@/components/ui/textarea";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const InteractiveDemo = () => {
   const [loading, setLoading] = useState(false);
-  const [generated, setGenerated] = useState(false);
+  const [prompt, setPrompt] = useState("");
+  const navigate = useNavigate();
+  const { toast } = useToast();
   
   const handleGenerate = () => {
     setLoading(true);
-    // Simulate API call
+    
+    // Simulate API call then redirect to authentication
     setTimeout(() => {
       setLoading(false);
-      setGenerated(true);
-    }, 2000);
+      toast({
+        title: "Authentication required",
+        description: "Please log in to view your generated aircraft design",
+      });
+      navigate("/auth");
+    }, 1000);
   };
 
   return (
-    <section id="demo" className="py-20 relative overflow-hidden cosmic-dots">
-      {/* Floating Elements */}
-      <div className="absolute left-1/4 top-1/4 w-3 h-3 rounded-full bg-purple-500/30 animate-float" style={{ animationDelay: '0.5s' }}></div>
-      <div className="absolute left-3/4 top-1/3 w-2 h-2 rounded-full bg-blue-500/30 animate-float" style={{ animationDelay: '1.2s' }}></div>
-      <div className="absolute left-1/3 bottom-1/4 w-4 h-4 rounded-full bg-purple-500/20 animate-float" style={{ animationDelay: '1.8s' }}></div>
-      
-      {/* Background Elements */}
+    <section id="demo" className="py-20 relative overflow-hidden">
+      {/* Background with fewer dots */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-purple-950/10"></div>
-        <div className="absolute bottom-40 left-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-purple-950/20"></div>
+        <div className="absolute bottom-40 left-20 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"></div>
       </div>
+      
+      {/* Floating Elements */}
+      <div className="absolute left-1/4 top-1/4 w-3 h-3 rounded-full bg-purple-500/40 animate-float" style={{ animationDelay: '0.5s' }}></div>
+      <div className="absolute left-3/4 top-1/3 w-2 h-2 rounded-full bg-blue-500/40 animate-float" style={{ animationDelay: '1.2s' }}></div>
+      <div className="absolute left-1/3 bottom-1/4 w-4 h-4 rounded-full bg-purple-500/30 animate-float" style={{ animationDelay: '1.8s' }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
@@ -58,21 +68,32 @@ const InteractiveDemo = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 gap-10">
           {/* Input Form */}
-          <Card className="glass-card border-0">
+          <Card className="glass-card border-0 max-w-4xl mx-auto shadow-2xl hover:shadow-purple-500/10 transition-all duration-300">
             <CardHeader>
               <CardTitle>Design Parameters</CardTitle>
               <CardDescription>Define your aircraft requirements</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
+                <Label htmlFor="prompt">How would you like your aircraft to be?</Label>
+                <Textarea 
+                  id="prompt" 
+                  placeholder="Describe your ideal aircraft. E.g., 'A fuel-efficient passenger jet with extended range, focusing on sustainable materials and aerodynamic excellence...'" 
+                  className="bg-secondary/30 min-h-24 resize-none border-purple-500/20 focus:border-purple-500/50"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                />
+              </div>
+              
+              <div className="space-y-2">
                 <Label htmlFor="aircraft-type">Aircraft Type</Label>
                 <Select defaultValue="commercial">
-                  <SelectTrigger id="aircraft-type">
+                  <SelectTrigger id="aircraft-type" className="bg-secondary/30 border-purple-500/20">
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-card border border-border">
+                  <SelectContent className="bg-background border border-purple-500/20 backdrop-blur-md">
                     <SelectItem value="commercial">Commercial Passenger</SelectItem>
                     <SelectItem value="cargo">Cargo</SelectItem>
                     <SelectItem value="private">Private Jet</SelectItem>
@@ -84,7 +105,7 @@ const InteractiveDemo = () => {
               
               <div className="space-y-2">
                 <Label htmlFor="passengers">Passenger Capacity</Label>
-                <Input id="passengers" type="number" defaultValue="150" className="bg-secondary/50" />
+                <Input id="passengers" type="number" defaultValue="150" className="bg-secondary/30 border-purple-500/20" />
               </div>
               
               <div className="space-y-2">
@@ -102,10 +123,10 @@ const InteractiveDemo = () => {
               <div className="space-y-2">
                 <Label htmlFor="priority">Design Priority</Label>
                 <Select defaultValue="efficiency">
-                  <SelectTrigger id="priority">
+                  <SelectTrigger id="priority" className="bg-secondary/30 border-purple-500/20">
                     <SelectValue placeholder="Select Priority" />
                   </SelectTrigger>
-                  <SelectContent className="bg-card border border-border">
+                  <SelectContent className="bg-background border border-purple-500/20 backdrop-blur-md">
                     <SelectItem value="efficiency">Fuel Efficiency</SelectItem>
                     <SelectItem value="speed">Maximum Speed</SelectItem>
                     <SelectItem value="capacity">Maximum Capacity</SelectItem>
@@ -117,7 +138,7 @@ const InteractiveDemo = () => {
               
               <Button 
                 onClick={handleGenerate} 
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
                 disabled={loading}
               >
                 {loading ? (
@@ -130,60 +151,6 @@ const InteractiveDemo = () => {
                   </div>
                 ) : "Generate Design"}
               </Button>
-            </CardContent>
-          </Card>
-          
-          {/* Result Visualization */}
-          <Card className="glass-card border-0 overflow-hidden">
-            <CardHeader>
-              <CardTitle>Design Preview</CardTitle>
-              <CardDescription>Generated based on your specifications</CardDescription>
-            </CardHeader>
-            <CardContent className="h-[400px] flex items-center justify-center relative">
-              {generated ? (
-                <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-b from-purple-700/10 to-blue-900/20 flex items-center justify-center">
-                    <div className="space-glow p-4 rounded-2xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-48 w-48 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4 right-4 glass p-4 rounded-lg">
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>Fuel Efficiency</span>
-                      <span>92%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-1.5 mb-3">
-                      <div className="bg-purple-500 h-1.5 rounded-full w-[92%]"></div>
-                    </div>
-                    
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>Drag Coefficient</span>
-                      <span>0.021</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-1.5 mb-3">
-                      <div className="bg-purple-500 h-1.5 rounded-full w-[85%]"></div>
-                    </div>
-                    
-                    <div className="flex justify-between text-sm mb-1">
-                      <span>Weight Optimization</span>
-                      <span>88%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-1.5">
-                      <div className="bg-purple-500 h-1.5 rounded-full w-[88%]"></div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  <p>Set parameters and generate a design</p>
-                </div>
-              )}
             </CardContent>
           </Card>
         </div>

@@ -1,16 +1,18 @@
 
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="py-12 border-t border-purple-900/20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
                 <span className="font-bold text-white">A</span>
               </div>
               <span className="text-xl font-bold">Aviron AI</span>
-            </div>
+            </Link>
             <p className="text-gray-400 mb-4">
               Revolutionizing aircraft design with artificial intelligence.
             </p>
@@ -41,33 +43,33 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Platform</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Features</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Technology</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">AI Model</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Integrations</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Pricing</a></li>
+              <li><Link to="/#features" className="text-gray-400 hover:text-purple-500 transition-colors">Features</Link></li>
+              <li><Link to="/technology" className="text-gray-400 hover:text-purple-500 transition-colors">Technology</Link></li>
+              <li><Link to="/ai-model" className="text-gray-400 hover:text-purple-500 transition-colors">AI Model</Link></li>
+              <li><Link to="/integrations" className="text-gray-400 hover:text-purple-500 transition-colors">Integrations</Link></li>
+              <li><Link to="/#pricing" className="text-gray-400 hover:text-purple-500 transition-colors">Pricing</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Press</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Contact</a></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-purple-500 transition-colors">About Us</Link></li>
+              <li><Link to="/careers" className="text-gray-400 hover:text-purple-500 transition-colors">Careers</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-purple-500 transition-colors">Blog</Link></li>
+              <li><Link to="/press" className="text-gray-400 hover:text-purple-500 transition-colors">Press</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-purple-500 transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">API Reference</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Tutorials</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Support</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">Community</a></li>
+              <li><Link to="/documentation" className="text-gray-400 hover:text-purple-500 transition-colors">Documentation</Link></li>
+              <li><Link to="/api" className="text-gray-400 hover:text-purple-500 transition-colors">API Reference</Link></li>
+              <li><Link to="/tutorials" className="text-gray-400 hover:text-purple-500 transition-colors">Tutorials</Link></li>
+              <li><Link to="/support" className="text-gray-400 hover:text-purple-500 transition-colors">Support</Link></li>
+              <li><Link to="/community" className="text-gray-400 hover:text-purple-500 transition-colors">Community</Link></li>
             </ul>
           </div>
         </div>
@@ -77,9 +79,9 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Aviron AI. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Cookie Policy</a>
+            <Link to="/privacy" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Terms of Service</Link>
+            <Link to="/cookies" className="text-gray-400 hover:text-purple-500 text-sm transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>
